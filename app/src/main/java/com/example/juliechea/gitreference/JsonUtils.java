@@ -53,8 +53,16 @@ public class JsonUtils {
                 JSONObject json_data = jArray.getJSONObject(i);
                 GitReference gitReference = new GitReference();
                 gitReference.setCommand(json_data.getString("command"));
+                gitReference.setExample(json_data.getString("example"));
+                gitReference.setExplanations(json_data.getString("explanation"));
+                gitReference.setSections(json_data.getString("section"));
+
 
                 Log.i("JSON", "Adding: " + gitReference.getCommand());
+                Log.i("JSON", "Adding: " + gitReference.getExample());
+                Log.i("JSON", "Adding: " + gitReference.getExplanations());
+                Log.i("JSON", "Adding: " + gitReference.getSections());
+
                 data.add(gitReference);
             }
 
@@ -62,23 +70,7 @@ public class JsonUtils {
 
         }
 
-        try {
-            JSONObject jsonObject = new JSONObject(jsonString);
-            // Extract all the "example" JSON objects into a JsonArray
-            jArray = jsonObject.getJSONArray("example");
 
-            // Extract json objects from JsonArray and store into ArrayList as class objects
-            for (int i = 0; i < jArray.length(); i++) {
-                JSONObject json_data = jArray.getJSONObject(i);
-                GitReference gitReference = new GitReference();
-                gitReference.setExample(json_data.getString("example"));
-
-                Log.i("JSON", "Adding: " + gitReference.getExample());
-                data.add(gitReference);
-            }
-        } catch (Exception ex){
-
-        }
 
 
 
